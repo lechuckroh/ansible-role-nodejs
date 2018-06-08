@@ -1,0 +1,13 @@
+---
+- name: Import Nodesource RPM key
+  rpm_key:
+    key: https://rpm.nodesource.com/pub/el/NODESOURCE-GPG-SIGNING-KEY-EL
+    state: present
+
+- name: Add Nodesource repository
+  yum:
+    name: "https://rpm.nodesource.com/pub_{{ nodejs_version }}.x/el/{{ ansible_distribution_major_version }}/{{ ansible_architecture }}/nodesource-release-el{{ ansible_distribution_major_version }}-1.noarch.rpm"
+    state: present
+
+- name: Ensure Node.js is installed.
+  yum: "name=nodejs-{{ nodejs_version }}.* state=present enablerepo='epel,nodesource'"
