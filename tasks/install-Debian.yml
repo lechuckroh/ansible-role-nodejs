@@ -25,5 +25,5 @@
 
 - name: Ensure Node.js is installed.
   apt:
-    name: "nodejs-{{ nodejs_version }}.*"
+    name: "nodejs={{ nodejs_version }}.*"
     state: present
